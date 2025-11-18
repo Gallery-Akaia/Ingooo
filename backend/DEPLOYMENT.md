@@ -62,7 +62,10 @@ This backend application now uses PostgreSQL instead of SQLite, making it ready 
 ### Frontend Setup:
 
 1. **Create another Web Service** for your frontend
-2. **Set Environment Variable**:
+2. **Configure Build Settings**:
+   - Build Command: `npm install && npm run build`
+   - Start Command: `npm run serve`
+3. **Set Environment Variable**:
    ```
    REACT_APP_BACKEND_URL=https://your-backend-url.onrender.com
    ```
