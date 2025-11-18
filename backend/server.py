@@ -66,15 +66,15 @@ class User(BaseModel):
     picture: str
     is_admin: bool = False
     is_owner: bool = False
-    created_at: str = Field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
 class UserSession(BaseModel):
     model_config = ConfigDict(extra="ignore")
     
     user_id: str
     session_token: str
-    expires_at: str
-    created_at: str = Field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
+    expires_at: datetime
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
 class Category(BaseModel):
     model_config = ConfigDict(extra="ignore")
@@ -82,7 +82,7 @@ class Category(BaseModel):
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
     name: str
     description: Optional[str] = ""
-    createdAt: str = Field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
+    createdAt: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
 class CategoryCreate(BaseModel):
     name: str
@@ -102,7 +102,7 @@ class Product(BaseModel):
     category: str
     imageUrl: str
     stock: int = 0
-    createdAt: str = Field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
+    createdAt: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
 class ProductCreate(BaseModel):
     name: str
@@ -395,7 +395,7 @@ async def get_categories():
                 id=row['id'],
                 name=row['name'],
                 description=row['description'] or "",
-                createdAt=row['created_at'].isoformat() if hasattr(row['created_at'], 'isoformat') else str(row['created_at'])
+                createdAt=row['created_at']
             )
             for row in rows
         ]
@@ -416,7 +416,7 @@ async def get_category(category_id: str):
         id=row['id'],
         name=row['name'],
         description=row['description'] or "",
-        createdAt=row['created_at'].isoformat() if hasattr(row['created_at'], 'isoformat') else str(row['created_at'])
+        createdAt=row['created_at']
     )
 
 @api_router.put("/categories/{category_id}", response_model=Category)
@@ -476,7 +476,7 @@ async def update_category(category_id: str, category_update: CategoryUpdate, ver
         id=row['id'],
         name=row['name'],
         description=row['description'] or "",
-        createdAt=row['created_at'].isoformat() if hasattr(row['created_at'], 'isoformat') else str(row['created_at'])
+        createdAt=row['created_at']
     )
 
 @api_router.delete("/categories/{category_id}")
@@ -619,7 +619,7 @@ async def get_products(
                 category=row['category'],
                 imageUrl=row['imageurl'],
                 stock=row['stock'],
-                createdAt=row['created_at'].isoformat() if hasattr(row['created_at'], 'isoformat') else str(row['created_at'])
+                createdAt=row['created_at']
             )
             for row in rows
         ]
