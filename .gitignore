@@ -79,4 +79,28 @@ backend/store.db
 .cache/
 
 # Mobile development
-android-sdk/ 
+android-sdk/
+
+# Replit-specific files
+.replit
+.config/
+.upm/
+.cache/
+.emergent/
+replit.nix
+replit.md
+.pythonlibs/
+
+# Development and testing files (not needed for deployment)
+test_reports/
+tests/
+attached_assets/
+auth_testing.md
+backend_test.py
+main.py
+test_result.md
+uv.lock
+pyproject.toml
+
+# Temporary files
+/tmp/ 
