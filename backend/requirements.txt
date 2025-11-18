@@ -125,3 +125,6 @@ zipp==3.23.0
 # PostgreSQL Database
 asyncpg==0.30.0
 psycopg2-binary==2.9.11
+
+# ImageKit for image uploads
+imagekitio==3.2.0
