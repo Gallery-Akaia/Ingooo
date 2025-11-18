@@ -1,8 +1,0 @@
-[project]
-name = "Ingoo"
-version = "0.1.0"
-description = "Premium Tools for Master Craftsmen"
-requires-python = ">=3.12"
-dependencies = [
-    "requests>=2.32.5",
-]
